@@ -4,10 +4,11 @@ Standard application context for NodeJS applications, including validation, midd
 
 Abstract
 ========
-This library was designed so that different application setups may come to one down standard interface when writing its logic. To do so, the interface must abstract all essential tools an application needs, which are:
+This library was designed so that different application setups may come down to one standard interface when writing its logic. To do so, the interface must abstract all essential tools an application needs, which are:
   - Data validation
   - Flow control
   - Error reporting
+  - Middlewares
   - Logging
 
 
