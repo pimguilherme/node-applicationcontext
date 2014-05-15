@@ -38,7 +38,7 @@ module.exports = function () {
         this.middleware('inflate', {'user':'User'}),
 
         function (next) {
-            this.log("Sending notification '%s' to user %s", data.message, data.user);
+            this.log("Sending notification '%s' to user %s", this.data.message, this.data.user);
             // Or:
             // this.logger.log("Sending notification '%s' to user %s", data.message, data.user);
             this.data.user.sendPushNotification({
