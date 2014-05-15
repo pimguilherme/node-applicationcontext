@@ -8,6 +8,7 @@ This library was designed so that different application setups may come to one d
   - Data validation
   - Flow control
   - Error reporting
+  - Logging
 
 
 Target
@@ -17,7 +18,7 @@ This library is targeted to those who want their code to be manageable and unifo
 
 Example
 =======
-To illustrate the concept, here's some code to send a User 'user' a notification.
+To illustrate the concept, here's some code to send an user a notification.
 
 ```javascript
 module.exports = function () {
@@ -27,14 +28,21 @@ module.exports = function () {
         this.validation({
             'user':function () {
                 this.mongoId()
+            },
+            'message':function(){
+                this.nullable({default: 'This is a test!'})
+                    .string()
             }
         }),
 
         this.middleware('inflate', {'user':'User'}),
 
         function (next) {
+            this.log("Sending notification '%s' to user %s", data.message, data.user);
+            // Or:
+            // this.logger.log("Sending notification '%s' to user %s", data.message, data.user);
             this.data.user.sendPushNotification({
-                message:"This is a test!",
+                message:this.data.message,
                 payload:{
                     type:"notification_test"
                 }
